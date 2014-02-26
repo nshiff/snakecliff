@@ -107,12 +107,22 @@ print 'unit tests OK'
 
 
 
-def getRandomSteps(stepsLength):
+
+
+
+
+MAX_ALLOWABLE_STEPS = 3
+
+STEPS_LENGTH = 45
+
+EXHAUSTED = int(math.pow(10,5.95))
+
+for i in range(EXHAUSTED):
 	steps = []
 	for i in range(4):
 		next = random.choice([1,-1])
 		steps.append(next)
-	for i in range(4,stepsLength):		
+	for i in range(4,STEPS_LENGTH):
 		prev1 = steps[i-1]
 		prev2 = steps[i-2]
 		prev3 = steps[i-3]
@@ -122,18 +132,6 @@ def getRandomSteps(stepsLength):
 		else:
 			next = random.choice([1,-1])
 		steps.append(next)
-	return steps
-
-
-
-MAX_ALLOWABLE_STEPS = 3
-
-STEPS_LENGTH = 40
-
-EXHAUSTED = int(math.pow(10,5.95))
-
-for i in range(EXHAUSTED):
-	steps = getRandomSteps(STEPS_LENGTH)
 
 	win = callTestStepWithSkipping(steps,MAX_ALLOWABLE_STEPS)
 	if win:
